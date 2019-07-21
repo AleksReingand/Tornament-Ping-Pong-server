@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airdr.pingpong.api.Api;
-import com.airdr.pingpong.api.ResponseServer;
+import com.airdr.pingpong.entities.Participant;
 import com.airdr.pingpong.repository.IParticipant;
 
 @RestController
@@ -18,8 +18,8 @@ public class Controller {
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
 
 	@GetMapping(Api.PARTICIPANT)
-	public ResponseServer createParticipant()
+	public Iterable<Participant> createParticipant()
 	{
-		return ResponseServer.OK;
+		return participant.getAllParticipant();
 	}
 }

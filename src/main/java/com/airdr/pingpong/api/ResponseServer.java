@@ -2,5 +2,5 @@ package com.airdr.pingpong.api;
 
 public enum ResponseServer {
 
-	OK, EXIST
+	OK, EXIST, NOT_FOUND
 }
