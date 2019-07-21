@@ -3,8 +3,6 @@ package com.airdr.pingpong.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,15 +14,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Participant {
+public class Photo {
 
 	@Id
 	private String id;
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
 	
-	@OneToOne
-	Photo photo;
+	@Lob
+	private byte[] photo;
 }
