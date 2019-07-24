@@ -16,13 +16,19 @@ import com.airdr.pingpong.entities.Participant;
 import com.airdr.pingpong.repository.IParticipant;
 
 @RestController
-public class Controller {
+public class ControllerApp {
 	
 	@Autowired
 	IParticipant participant;
 	
-	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
+	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(ControllerApp.class);
 
+	@GetMapping(Api.PROFILE)
+	public Participant getParticipantById(@RequestParam(name = Api.DATA) int id)
+	{
+		return participant.getParticipantById(id);
+	}
+	
 	@GetMapping(Api.PARTICIPANT)
 	public Iterable<Participant> createParticipant()
 	{
@@ -46,4 +52,5 @@ public class Controller {
 	{
 		return participant.removeParticipant(id);
 	}
+	
 }

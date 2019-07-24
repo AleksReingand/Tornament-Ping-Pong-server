@@ -2,6 +2,7 @@ package com.airdr.pingpong.repository;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,8 +11,8 @@ import com.airdr.pingpong.api.ResponseServer;
 import com.airdr.pingpong.entities.Participant;
 
 
-@org.springframework.stereotype.Repository
-public class Repository implements IParticipant{
+@Repository
+public class Repositories implements IParticipant{
 
 	@PersistenceContext
 	EntityManager em;
@@ -37,8 +38,7 @@ public class Repository implements IParticipant{
 		{
 			return ResponseServer.NOT_FOUND;
 		}
-		participantOld.setFirstName(participant.getFirstName());
-		participantOld.setLastName(participant.getLastName());
+		participantOld.setName(participant.getName());
 		participantOld.setPhoto(participant.getPhoto());
 		return ResponseServer.OK;
 	}
@@ -52,6 +52,11 @@ public class Repository implements IParticipant{
 		em.remove(participant);
 		return ResponseServer.OK;
 	}
-		
+	
+	public Participant getParticipantById(int id)
+	{
+		Participant participant = em.find(Participant.class, id);
+		return participant;
+	}
 
 }
