@@ -1,6 +1,5 @@
 package com.airdr.pingpong.controller;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,13 @@ public class ControllerApp {
 	@Autowired
 	IParticipant participant;
 	
-	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(ControllerApp.class);
+	//private static final Logger logger = org.slf4j.LoggerFactory.getLogger(ControllerApp.class);
+	
+	@GetMapping("/test")
+	public String test()
+	{
+		return "test";
+	}
 
 	@GetMapping(Api.PROFILE)
 	public Participant getParticipantById(@RequestParam(name = Api.DATA) int id)
