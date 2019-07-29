@@ -2,7 +2,7 @@ package com.airdr.pingpong.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,7 +23,6 @@ public class Participant {
 	private String id;
 	@NotNull
 	private String name;	
-	
-	@OneToOne
-	Photo photo;		
+	@Lob
+	private byte[] photo;	
 }

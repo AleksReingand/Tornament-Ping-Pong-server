@@ -32,7 +32,12 @@ public class Repositories implements IParticipant{
 		return ResponseServer.OK;
 	}
 
-	public ResponseServer updateInfo(int id, Participant participant) {
+	public Participant getParticipantById(Integer id) {
+		Participant participant = em.find(Participant.class, id);
+		return participant;
+	}
+
+	public ResponseServer updateInfo(Integer id, Participant participant) {
 		Participant participantOld = em.find(Participant.class, id);
 		if(participantOld == null)
 		{
@@ -43,7 +48,7 @@ public class Repositories implements IParticipant{
 		return ResponseServer.OK;
 	}
 
-	public ResponseServer removeParticipant(int id) {
+	public ResponseServer removeParticipant(Integer id) {
 		Participant participant = em.find(Participant.class, id);
 		if(participant == null)
 		{
@@ -51,12 +56,6 @@ public class Repositories implements IParticipant{
 		}
 		em.remove(participant);
 		return ResponseServer.OK;
-	}
-	
-	public Participant getParticipantById(int id)
-	{
-		Participant participant = em.find(Participant.class, id);
-		return participant;
 	}
 
 }

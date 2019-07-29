@@ -29,15 +29,9 @@ public class ControllerApp {
 	}
 
 	@GetMapping(Api.PROFILE)
-	public Participant getParticipantById(@RequestParam(name = Api.DATA) int id)
+	public Participant getParticipantById(@RequestParam(name = Api.DATA) Integer id)
 	{
 		return participant.getParticipantById(id);
-	}
-	
-	@GetMapping(Api.PARTICIPANT)
-	public Iterable<Participant> createParticipant()
-	{
-		return participant.getAllParticipant();
 	}
 	
 	@PostMapping(Api.PARTICIPANT)

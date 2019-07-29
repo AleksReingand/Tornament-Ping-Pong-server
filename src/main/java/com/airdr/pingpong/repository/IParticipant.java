@@ -5,9 +5,9 @@ import com.airdr.pingpong.entities.Participant;
 
 public interface IParticipant {
 
-	Participant getParticipantById(int id);
+	Participant getParticipantById(Integer id);
 	Iterable<Participant> getAllParticipant();
 	ResponseServer addParticipant(Participant participant);
-	ResponseServer updateInfo(int id, Participant participant);
-	ResponseServer removeParticipant(int id);
+	ResponseServer updateInfo(Integer id, Participant participant);
+	ResponseServer removeParticipant(Integer id);
 }
