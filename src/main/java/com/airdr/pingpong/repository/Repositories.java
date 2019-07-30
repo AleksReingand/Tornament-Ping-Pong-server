@@ -33,18 +33,17 @@ public class Repositories implements IParticipant{
 	}
 
 	public Participant getParticipantById(Integer id) {
-		Participant participant = em.find(Participant.class, id);
-		return participant;
+		return em.find(Participant.class, id);
 	}
 
-	public ResponseServer updateInfo(Integer id, Participant participant) {
+	public ResponseServer updateInfo(Integer id, String name, byte[] photo) {
 		Participant participantOld = em.find(Participant.class, id);
 		if(participantOld == null)
 		{
 			return ResponseServer.NOT_FOUND;
 		}
-		participantOld.setName(participant.getName());
-		participantOld.setPhoto(participant.getPhoto());
+		participantOld.setName(name);
+		participantOld.setPhoto(photo);
 		return ResponseServer.OK;
 	}
 

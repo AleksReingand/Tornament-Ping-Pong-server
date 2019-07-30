@@ -8,6 +8,6 @@ public interface IParticipant {
 	Participant getParticipantById(Integer id);
 	Iterable<Participant> getAllParticipant();
 	ResponseServer addParticipant(Participant participant);
-	ResponseServer updateInfo(Integer id, Participant participant);
+	ResponseServer updateInfo(Integer id, String name, byte[] photo);
 	ResponseServer removeParticipant(Integer id);
 }

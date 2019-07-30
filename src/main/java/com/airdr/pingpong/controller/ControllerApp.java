@@ -34,6 +34,13 @@ public class ControllerApp {
 		return participant.getParticipantById(id);
 	}
 	
+	@GetMapping(Api.ALL)
+	public Iterable<Participant> getParticipantById()
+	{
+		Iterable<Participant> l = participant.getAllParticipant();
+		return l;
+	}
+	
 	@PostMapping(Api.PARTICIPANT)
 	public ResponseServer newParticipant(@RequestBody Participant entity)
 	{
@@ -41,9 +48,9 @@ public class ControllerApp {
 	}
 	
 	@PutMapping(Api.PARTICIPANT)
-	public ResponseServer updateParticipant(@RequestParam(name = Api.DATA) int id, @RequestParam Participant entity)
+	public ResponseServer updateParticipant(@RequestParam(name = Api.DATA) int id, @RequestParam String name, @RequestParam byte[] photo)
 	{
-		return participant.updateInfo(id, entity);
+		return participant.updateInfo(id, name, photo);
 	}
 	
 	@DeleteMapping(Api.PARTICIPANT)

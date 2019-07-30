@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Participant {
 
 	@Id
-	private String id;
+	private int id;
 	@NotNull
 	private String name;	
 	@Lob
