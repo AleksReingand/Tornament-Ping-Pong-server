@@ -3,6 +3,9 @@ package com.airdr.pingpong.repository;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,11 +21,12 @@ public class Repositories implements IParticipant{
 	EntityManager em;
 	
 	@SuppressWarnings("unchecked")
-	public Iterable<Participant> getAllParticipant() {
-		Query query = em.createQuery("SELECT * FROM partisipant");		
+	public List<Participant> getAllParticipant() {
+		Query query = em.createQuery("SELECT p FROM Participant AS p");		
 		return query.getResultList();
 	}
 
+	@Transactional
 	public ResponseServer addParticipant(Participant participant) {
 		if(em.find(Participant.class, participant.getId()) != null)
 		{
@@ -36,17 +40,20 @@ public class Repositories implements IParticipant{
 		return em.find(Participant.class, id);
 	}
 
-	public ResponseServer updateInfo(Integer id, String name, byte[] photo) {
+	@Transactional
+	public ResponseServer updateInfo(Integer id, Participant newParticipant) {
 		Participant participantOld = em.find(Participant.class, id);
 		if(participantOld == null)
 		{
 			return ResponseServer.NOT_FOUND;
 		}
-		participantOld.setName(name);
-		participantOld.setPhoto(photo);
+		participantOld.setName(newParticipant.getName());
+		participantOld.setPhoto(newParticipant.getPhoto());
+		
 		return ResponseServer.OK;
 	}
 
+	@Transactional
 	public ResponseServer removeParticipant(Integer id) {
 		Participant participant = em.find(Participant.class, id);
 		if(participant == null)

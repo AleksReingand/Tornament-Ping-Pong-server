@@ -1,5 +1,7 @@
 package com.airdr.pingpong.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +37,9 @@ public class ControllerApp {
 	}
 	
 	@GetMapping(Api.ALL)
-	public Iterable<Participant> getParticipantById()
+	public List<Participant> getParticipantById()
 	{
-		Iterable<Participant> l = participant.getAllParticipant();
+		List<Participant> l = (List<Participant>) participant.getAllParticipant();
 		return l;
 	}
 	
@@ -48,9 +50,9 @@ public class ControllerApp {
 	}
 	
 	@PutMapping(Api.PARTICIPANT)
-	public ResponseServer updateParticipant(@RequestParam(name = Api.DATA) int id, @RequestParam String name, @RequestParam byte[] photo)
+	public ResponseServer updateParticipant(@RequestParam(name = Api.DATA) int id, @RequestBody Participant newEntity)
 	{
-		return participant.updateInfo(id, name, photo);
+		return participant.updateInfo(id, newEntity);
 	}
 	
 	@DeleteMapping(Api.PARTICIPANT)
